@@ -11,7 +11,11 @@ Loads the existing example.db file into the environment.
 Runs the script, which uses the existing database.
 Verifies that each CRUD operation works correctly using assertions.
 Prints the results of each operation to the pipeline logs for review.
+
 [![Python application](https://github.com/iikikk/Python-Script-interacting-with-SQL-Database/actions/workflows/python-app.yml/badge.svg)](https://github.com/iikikk/Python-Script-interacting-with-SQL-Database/actions/workflows/python-app.yml)
+
+### loading the .db file
+![ci](./ci.png)
 ## Requirements
 
 - Python 3.x
@@ -23,7 +27,10 @@ Prints the results of each operation to the pipeline logs for review.
 
    ```bash
    python test.py
+## Database connection
+Python script has successfully connected to sqlite database.
 
+![connection](./connection.png)
 ## CRUD Operations
 ### Create Operation
 After inserting the initial data into the employees table, the data is as follows:

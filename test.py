@@ -6,6 +6,7 @@ db_exists = os.path.isfile(db_file)
 
 # Connect to the SQLite database
 conn = sqlite3.connect(db_file)
+print("Database connection successful.")  # Confirm successful connection
 cursor = conn.cursor()
 
 if not db_exists:
