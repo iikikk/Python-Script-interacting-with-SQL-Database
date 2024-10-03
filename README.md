@@ -4,6 +4,9 @@
 
 A Python script that connects to an SQLite database and performs CRUD operations, including custom SQL queries.
 
+## CI/CD Pipeline
+The project uses GitHub Actions to automate testing of database operations on every push. The pipeline runs the script and checks for successful execution by verifying the output logs.
+[![Python application](https://github.com/iikikk/Python-Script-interacting-with-SQL-Database/actions/workflows/python-app.yml/badge.svg)](https://github.com/iikikk/Python-Script-interacting-with-SQL-Database/actions/workflows/python-app.yml)
 ## Requirements
 
 - Python 3.x
@@ -43,6 +46,3 @@ Selecting employees whose names start with 'A':
 
 ![q2](./q2.png)
 
-
-## CI/CD Pipeline
-The project uses GitHub Actions to automate testing of database operations on every push. The pipeline runs the script and checks for successful execution by verifying the output logs.
