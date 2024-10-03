@@ -5,7 +5,12 @@
 A Python script that connects to an SQLite database and performs CRUD operations, including custom SQL queries.
 
 ## CI/CD Pipeline
-The project uses GitHub Actions to automate testing of database operations on every push. The pipeline runs the script and checks for successful execution by verifying the output logs.
+The project uses GitHub Actions to automate testing of database operations on every push. The pipeline:
+
+Loads the existing example.db file into the environment.
+Runs the script, which uses the existing database.
+Verifies that each CRUD operation works correctly using assertions.
+Prints the results of each operation to the pipeline logs for review.
 [![Python application](https://github.com/iikikk/Python-Script-interacting-with-SQL-Database/actions/workflows/python-app.yml/badge.svg)](https://github.com/iikikk/Python-Script-interacting-with-SQL-Database/actions/workflows/python-app.yml)
 ## Requirements
 

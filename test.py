@@ -1,31 +1,37 @@
 import sqlite3
+import os
 
-# Connect to the SQLite database (or create it if it doesn't exist)
-conn = sqlite3.connect('example.db')
+db_file = 'example.db'
+db_exists = os.path.isfile(db_file)
+
+# Connect to the SQLite database
+conn = sqlite3.connect(db_file)
 cursor = conn.cursor()
 
-# Create a table
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS employees (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        department TEXT NOT NULL
-    )
-''')
+if not db_exists:
+    # Create a table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS employees (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            department TEXT NOT NULL
+        )
+    ''')
 
-# Insert data into the table (Create)
-cursor.execute('''
-    INSERT INTO employees (name, department)
-    VALUES ('Alice', 'HR'), ('Bob', 'Engineering'), ('Charlie', 'Marketing')
-''')
-conn.commit()
+    # Insert data into the table (Create)
+    cursor.execute('''
+        INSERT INTO employees (name, department)
+        VALUES ('Alice', 'HR'), ('Bob', 'Engineering'), ('Charlie', 'Marketing')
+    ''')
+    conn.commit()
 
-# Print the data after insertion (Create)
-print("Data after insertion (Create):")
-cursor.execute('SELECT * FROM employees')
-rows = cursor.fetchall()
-for row in rows:
-    print(row)
+    print("Data after insertion (Create):")
+    cursor.execute('SELECT * FROM employees')
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+else:
+    print("Database already exists. Using the existing database.")
 
 # Read data from the table (Read)
 print("\nData retrieved (Read):")
@@ -49,6 +55,11 @@ rows = cursor.fetchall()
 for row in rows:
     print(row)
 
+# Check that Charlie's department is updated
+cursor.execute('SELECT department FROM employees WHERE name = "Charlie"')
+charlie_dept = cursor.fetchone()
+assert charlie_dept[0] == 'Sales', "Charlie's department was not updated."
+
 # Delete a record
 cursor.execute('''
     DELETE FROM employees
@@ -62,6 +73,11 @@ cursor.execute('SELECT * FROM employees')
 rows = cursor.fetchall()
 for row in rows:
     print(row)
+
+# Check that Bob's record is deleted
+cursor.execute('SELECT * FROM employees WHERE name = "Bob"')
+bob_record = cursor.fetchone()
+assert bob_record is None, "Bob's record was not deleted."
 
 # First custom SQL query: Count the number of employees in each department
 print("\nEmployee count by department:")
