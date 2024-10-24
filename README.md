@@ -39,7 +39,7 @@ After inserting the initial data into the employees table, the data is as follow
 ### Read Operation
 Retrieving all data from the employees table:
 
-![create](./create.png)
+![create](./read.png)
 ### Update Operation
 After updating Charlie's department to Sales, the data is:
 
